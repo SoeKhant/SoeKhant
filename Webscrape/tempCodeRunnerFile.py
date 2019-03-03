@@ -1,10 +1,4 @@
-from bs4 import BeautifulSoup as soup
-from urllib.request import urlopen as u_req
-
-my_url= "https://www.lazada.sg/catalog/?q=samsung+s10&_keyori=ss&from=input&spm=a2o42.home.search.go.654346b5zbD3j2"
-client= u_req(my_url)
-page_html= client.read()
-client.close()
-page_soup= soup(page_html,"html.parser")
-page_soup.body
-page_soup.findAll("div",{"class":"c2prKC"}) 
+#to find for dell xps 15, one more working example
+my_url= "https://www.ebay.com.sg/sch/i.html?_odkw=dell&_osacat=0&_from=R40&_trksid=m570.l1313&_nkw=dell+xps+15&_sacat=0"
+item= "dell xps 15"
+price_floor= 1300

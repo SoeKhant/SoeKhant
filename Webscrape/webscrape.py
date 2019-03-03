@@ -20,6 +20,8 @@ def find_cheapest_price(my_url,item,price_floor):
     containers= page_soup.findAll("li", {"class":["sresult lvresult clearfix li shic", "sresult lvresult clearfix li"] } ) #two classes to take into account of the inconsistencies
 
     lowest_price= 9999999999999999
+    initial_lowest_price= 9999999999999999 
+
     for  container in containers:
         name_str= container.img["alt"]
         name_str= name_str.lower()
@@ -41,12 +43,19 @@ def find_cheapest_price(my_url,item,price_floor):
             if price >= price_floor : #This is to sieve out the cheap priced accessories like casings and screen protectors to find the real phone
                 if price <= lowest_price:
                     lowest_price= price
-    return (lowest_price)
+ 
+    if initial_lowest_price == lowest_price: #in cases where price_floor is set too high and lowest price can't be found.
+        return ("NA, Please enter a lower price floor.")
+    else: 
+        return (lowest_price)
 
 # To find for Samsung galaxy s10
 my_url= "https://www.ebay.com.sg/sch/i.html?_from=R40&_trksid=m570.l1313&_nkw=samsung+s10&_sacat=0"
+#The following url is the second page of search 
+# my_url="https://www.ebay.com.sg/sch/i.html?_from=R40&_sacat=0&_nkw=samsung+s10&_pgn=2&_skc=50&rt=nc"
 item="samsung galaxy s10"  
 price_floor= 100
+
 
 # #to find for dell xps 15, one more working example
 # my_url= "https://www.ebay.com.sg/sch/i.html?_odkw=dell&_osacat=0&_from=R40&_trksid=m570.l1313&_nkw=dell+xps+15&_sacat=0"
